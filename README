@@ -1,0 +1,94 @@
+tamuz1212
+matanyi
+
+
+1. Explanation on uml difference:
+    1.1
+        before_uml: we had only Avatar class
+        uml_after: we extended it with Potato class to world package
+
+    1.2
+        before_uml: we had only Tree class in tree package
+        uml_after: we added Trunk, Leaves, Leaf classes to tree package
+
+    1.3
+        uml_after: added display package for displaying graphic energy and numeric bottle counter
+
+    1.4
+        uml_after: added to world package RumBottle class
+
+
+2. Explanation on making the world endless:
+    we maintained 2 fields for each direction: one was render direction bound,
+    and the other was avatar bound.
+    each time update function is called we check if avatar crossed avatar bound, if so
+    we get the direction (left/right) that he went to.
+    according to the direction we remove objects that are out of the render bounds
+    and create objects that got into render bounds.
+    after removing and creating objects we make sure we update bounds accordingly.
+    by creating objects that are in render bound we make sure that user will always
+    think that the world is endless even that its not.
+    and by removing the objects that are out of render bound the game can run smoothly.
+
+    furthermore for creating the same gameObjects at x location we initialize  random
+    variable that uses the same x coordinate and the given seed, and in the user wont notice
+    any difference every time he will pass x coordinate in game.
+
+
+3. Explanation on implementing tree package:
+    we decided to implement tree package in the following way:
+    as we know a tree has two parts: the tree trunk and his leaves.
+    because of that we thought that it would be more appropriate and readable to create sub class for creating
+    a tree:
+    Trunk class - creates the tree trunk in given x coordinate from blocks
+    Leaves class - creates leaves of tree at given x coordinate. we decided to implement this class mainly
+    because we wanted to create a modular code and that tree wont be charge of creating the tree leaves.
+    leaf Class - create a leaf in given location and is charge on the leaf life cycle
+
+
+4. Explanation on programming dilemmas we had:
+    4.1 as we mentioned in section 3 - we decided while coding to create sub classes for tree package because
+    we realized that creating a tree isn't a simple task as we thought it would be, because a tree isn't just
+    a tree, its leaves has complex functionality that would be hard to implement in one class. by doing so we
+    got a modular code that each class is charge of creating small part of the tree and is easy to read and
+    extend.
+
+    4.2 we had a dilemma on implementing the avatar class. at the beginning we intended that avatar will
+    create avatar instant and implement all his functionality. we realized its isn't an easy mission, and
+    we decided to extend avatar class (Potato class) to easily use gameObject functionality like update,
+    onColissionEnter and saving object fields.
+
+
+5. Explanation on bonus part:
+
+    5.1 EnergyGraphic class
+    we draw on ipad 5 different energy bars. and we created a class that displays them according to avatar
+    current energy.
+
+    5.2 creating game concept
+    our avatar is actually a Potato pirate avatar, this is way we decided to create a game concept that
+    will fit his character.
+    the game includes and opening window that explains the user about the game goal and rule.
+    the game goal is to collect enough bottles of rum to get the potato pirate drunk.
+    at the end of the game the user can choose to reset the game
+
+    5.3 NumericBottleCounter
+    we created a numeric bottle counter that counts how many bottles the user collected and displays it
+    on screen.
+
+    5.4 creating pixel art Potato pirate avatar
+    we draw on the ipad a Potato pirate avatar using a special designated pixel art software.
+
+    5.5 creating and recording volume effects that complements the game and Potato pirate avatar
+    we recorded 4 sound effects on our humble "studio" at Matans house to enhance user experience.
+
+
+6. CopyRights
+    6.1 breaking bottle effect:
+        https://www.fesliyanstudios.com/royalty-free-sound-effects-download/glass-shattering-and-breaking-124
+
+    6.2 rum bottle picture:
+        https://www.123rf.com
+
+    6.3 Perlin class taken from github:
+        https://gist.github.com/alksily/7a85a1898e65c936f861ee93516e397d
